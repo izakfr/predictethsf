@@ -1,0 +1,4 @@
+pynamodb
+flask
+zappa
+python-dateutil==2.6.*
