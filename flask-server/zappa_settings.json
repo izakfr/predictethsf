@@ -5,6 +5,20 @@
         "profile_name": "default",
         "project_name": "flask-server",
         "runtime": "python3.6",
-        "s3_bucket": "zappa-ethsf"
+        "s3_bucket": "zappa-ethsf",
+        "environment_variables": {
+            "stage": "dev"
+        }
+    },
+    "prod": {
+        "app_function": "server.app",
+        "aws_region": "us-west-1",
+        "profile_name": "default",
+        "project_name": "flask-server",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-ethsf",
+        "environment_variables": {
+            "stage": "prod"
+        }
     }
 }
