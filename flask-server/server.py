@@ -16,7 +16,7 @@ def index():
     context = {}
     context['my_string'] = 'My first string'
     context['teams_list'] = dict_results
-    return render_template('landing.html', **context)
+    return render_template('index.html', **context)
 
 
 @app.route('/stage')

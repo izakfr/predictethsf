@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!--meta tags-->
+  <meta charset="UTF-8">
+  <meta name="description" content="Services Listing HTML5 CSS3 template">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+  <meta name="author" content="Ui-DesignLab">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--end meta tags-->
+
+  <title>Predict ETHSF</title>
+
+  <!--stylesheets-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/css/animate.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/jquery-nice-select-1.1.0/css/nice-select.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/OwlCarousel2-2.2.1/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/OwlCarousel2-2.2.1/owl.theme.green.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <!--end stylesheets-->
+
+  <!--google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:700|Raleway|Tangerine" rel="stylesheet">
+  <!--end google fonts-->
+
+</head>
+<body>
+
+<!--banner-->
+<div class="landing-banner">
+  <nav class="banner-menu">
+    <div class="banner-logo" style="color: white;font-size: 1.3em;">Predict ETHSF</a></div>
+    <div class="start-here">
+      <a href="https://www.stably.io" class="btn ui-btn banner-logo" target="_blank"style="padding:0.6em">Learn About Stably</a>
+      <a href="register.html" class="btn ui-btn banner-logo"  target="_blank" style="padding:0.6em">Register a Project</a>
+    </div>
+  </nav>
+
+  <div class="banner-content">
+    <h1 class="banner-title">Put your ETH where your mouth is</h1>
+    <em style="color:white">Welcome to Predict ETHSF, built by Stably.</em>
+    <p>The premise is simple - find a team, put an ETH stake behind them, and reap the rewards if they win the hackathon. And if your team wins, you'll get a portion of the total staked ETH!</p>
+  </div>
+
+</div>
+<!--end banner-->
+
+<!--connecting people-->
+<div class="connect">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="connect-info">
+        <h3>How It Works</h3>
+        <p>
+          Bacon ipsum dolor amet cow salami pork pastrami.
+          Pork loin beef ribs drumstick t-bone kielbasa chuck.
+          Bresaola meatball ribeye pig doner boudin. Meatloaf rump spare ribs,
+          salami drumstick corned beef ball tip jerky frankfurter.
+          Short ribs cow pork chop pancetta sausage jerky bresaola
+          frankfurter swine ribeye pork loin. Leberkas ham shankle chicken.
+          <br>
+          <br>
+          <strong>Payout Structure</strong>:
+        </p>
+        <ul>
+          <li><strong>20%</strong>: Top 10 winners of the hackathon will get 2% each of the total staked ETH</li>
+          <li><strong>80%</strong>: All accounts that put a stake in the winning teams will proprotionately split the remaining ETH</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end connecting people-->
+
+<div class="content-wrapper">
+
+  <h3 class="text-center">Projects</h3>
+
+  <!--listings-->
+  <div class="listings">
+    <div class="row">
+      {% for n in teams_list %}
+      <div class="col-lg-4 col-md-6">
+        <div class="listing-item">
+          <div class="cover-img">
+            <img src="{{n.picture_url}}" alt="">
+            <div class="cover-hover">
+            </div>
+          </div>
+          <div class="listing-info">
+            <div class="details">
+              <strong>{{n.name}}</strong>
+              <p>
+                {{n.description}} 
+              </p>
+                <i class="fa fa-link"></i> <em><a href="{{n.project_link}}">{{n.project_link}}</a></em>
+            </div>
+            <div class="bottom-details">
+              <div class="rating-stars">
+                <h1 style="margin-bottom:0">12%</h1>
+                <p style="margin-bottom:0.5em;">implied win</p>
+                <p style="margin-bottom:0;margin-top:0em;font-size:.8em;font-style:italic"><strong>{{n.total_staked_ether}} ETH</strong> staked</p>
+                <p style="font-size:.8em;font-style:italic">from <strong>{{n.total_accounts_staked}} accounts</strong></p>
+              </div>
+              <div class="rating-stars">
+                <form action="" method="post">
+                  <input type="text" id="tags" class="form-control" placeholder="0.0 ETH">
+                  <button class="btn ui-btn dark-blue">Stake</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <!--end listings-->
+
+</div>
+
+
+<!--footer section-->
+<div class="footer">
+  <div class="footer-strip">
+    <div class="row">
+      <div class="col-lg-3 col-md-3">
+        <h3 class="footer-logo">Serv</h3>
+      </div>
+      <div class="col-lg-6 col-md-6">
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <p class="copyright"><i  class="fa fa-copyright"></i> 2017 - todate Ui-DesignLab</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end footer section-->
+
+
+<script src="{{ url_for('static', filename='3rdparty/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/js/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/jquery-nice-select-1.1.0/js/jquery.nice-select.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
