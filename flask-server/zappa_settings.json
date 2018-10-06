@@ -3,9 +3,11 @@
         "app_function": "server.app",
         "aws_region": "us-west-1",
         "profile_name": "default",
-        "project_name": "flask-server",
+        "project_name": "predictethsf",
         "runtime": "python3.6",
         "s3_bucket": "zappa-ethsf",
+        "certificate_arn": "arn:aws:acm:us-west-1:494679192823:certificate/31d46484-6bad-4e5f-a92e-5920615b828d",
+        "domain": "kovan.predictethsf.com",
         "environment_variables": {
             "stage": "dev"
         }
@@ -14,9 +16,11 @@
         "app_function": "server.app",
         "aws_region": "us-west-1",
         "profile_name": "default",
-        "project_name": "flask-server",
+        "project_name": "predictethsf",
         "runtime": "python3.6",
         "s3_bucket": "zappa-ethsf",
+        "certificate_arn": "arn:aws:acm:us-west-1:494679192823:certificate/31d46484-6bad-4e5f-a92e-5920615b828d",
+        "domain": "www.predictethsf.com",
         "environment_variables": {
             "stage": "prod"
         }

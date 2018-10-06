@@ -1,25 +1,24 @@
 from flask import Flask, render_template
-import boto3
+from teams.TeamModel import TeamModel
+from utils import DEV_PROD_VALUE
+
 app = Flask(__name__)
 
-TEAMS_TABLE_NAME = 'dev_esf_team'
 
+@app.route('/test')
+def hello():
+    return 'Hello EthSF'
 
 @app.route('/')
-def hello():
-    return 'hello ethSF'
-
-@app.route('/teams')
-def landing():
-    db = boto3.resource('dynamodb')
-    teams_table = db.Table(TEAMS_TABLE_NAME)
-    data = teams_table.scan()['Items']
+def index():
+    results = TeamModel.scan()
+    dict_results = sorted([dict(x) for x in results], key=lambda x: float(x['total_staked_ether']), reverse=True)
     context = {}
-    context['my_string'] = 'StableSquad'
-    context['my_list'] = data
+    context['my_string'] = 'My first string'
+    context['teams_list'] = dict_results
     return render_template('landing.html', **context)
 
-@app.route('/instructions')
-def instructions():
-    return 'instructions'
 
+@app.route('/stage')
+def stage():
+    return 'Stage: ' + DEV_PROD_VALUE('dev', 'prod')
