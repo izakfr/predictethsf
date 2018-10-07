@@ -155,6 +155,15 @@
     },
     {
         "constant": false,
+        "inputs": [],
+        "name": "endBetting",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
         "inputs": [
             {
                 "name": "_newTeamName",
