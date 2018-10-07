@@ -62,8 +62,7 @@
               <textarea name="description" id="description" rows="2" placeholder="Max 140 characters"></textarea>
             </div>
             <hr>
-            <input name="address" id="address" type="text" class="form-control" style="display:none">
-            <input name="team_id" id="team_id" type="text" class="form-control" style="display:none">
+            <input name="tx_hash" id="tx_hash" type="text" class="form-control" style="display:none">
             <button type="submit" class="btn ui-btn dark-blue">Submit</i></button>
           </div>
         </div>
@@ -388,14 +387,12 @@ var abi = [
     }
   ]
   
-  function createTeam(name) {
-    debugger
+  async function createTeam(name) {
     if (window.ethereum) {
         window.web3 = new Web3(ethereum);
     } else {
         window.web3 = new Web3(web3.currentProvider);
     }
-    debugger
       // Load contract and address
       var predictethsf = web3.eth.contract(abi);
       var network = web3.version.network;
@@ -408,29 +405,20 @@ var abi = [
       }
       var instance = predictethsf.at(contract_address)
       var address = web3.eth.accounts[0];
-      instance.newTeam(name, {from: address}, function(error, result){
-        if(error) {
-          return false;
-        }
+      debugger
+      instance.newTeam.sendTransaction(name, function(error, tx_hash){
+        $("#tx_hash").val(tx_hash);
+        debugger
+        form_data = $('form').serializeArray();
+        $.post("/register", form_data, function(data, status){
+          alert("Data: " + data + "\nStatus: " + status);
+        });
       });
-      instance.methods.numTeams().call((error, result) => {
-        return [address, result];
-      });
-      return false;
   }
 
   $("button").click(function(){
     title_val = $("#title").val();
-    var createTeamTuple = createTeam(title_val);
-    if (!createTeamTuple) {
-      createTeamTuple=[1,2];
-    }
-    $("#address").val(createTeamTuple[0]);
-    $("#team_id").val(createTeamTuple[1]);
-    form_data = $('form').serializeArray();
-    $.post("/register", form_data, function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);
-    });
+    createTeam(title_val);
 });
 </script>
 

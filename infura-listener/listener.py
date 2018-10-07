@@ -62,6 +62,7 @@ class InfuraClient():
                 new_events = data_json['result']
                 print(response)
                 for new_event in new_events:
+                    tx_hash = new_event['transactionHash']
                     hex_data = new_event['data']
                     raw_hex = hex_data.split('0x')[1]
                     topics = new_event['topics']
@@ -75,14 +76,17 @@ class InfuraClient():
                         print(raw_hex)
                         print(team_id, submitter_address, arg3, arg4, team_name)
                         try:
-                            team = TeamModel.get(team_id)
+                            team = TeamModel.get(tx_hash)
+                            team.team_id = team_id
+                            team.address = submitter_address
                             team.mined = True
                             team.save()
                         except:
                             new_team = TeamModel(
-                                team_id,
+                                tx_hash,
                                 address=submitter_address,
                                 name=team_name,
+                                team_id=team_id,
                             )
                             new_team.save()
                     if BET_TOPIC in topics:
@@ -92,8 +96,8 @@ class InfuraClient():
                         team_on_chain = self.contract.functions.teamInfo(team_id).call()
                         print(team_id, submitter_address, wei_amount)
                         print(team_on_chain)
-                        team = TeamModel.get(team_id)
-                        team.submitter_address = team_on_chain[0]
+                        team = TeamModel.team_id_index.query(team_id).next()
+                        team.address = team_on_chain[0]
                         team.total_staked_ether = float(self.web3.fromWei(team_on_chain[2], 'ether'))
                         team.total_bets_made = team_on_chain[3]
                         team.save()
