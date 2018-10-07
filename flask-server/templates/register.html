@@ -16,16 +16,13 @@
   <title>Registration - Predict ETHSF</title>
 
   <!--stylesheets-->
-
-  <link rel="stylesheet" href="3rdparty/css/bootstrap.min.css">
-  <link rel="stylesheet" href="3rdparty/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="3rdparty/css/animate.min.css">
-  <link rel="stylesheet" href="3rdparty/jquery-nice-select-1.1.0/css/nice-select.css">
-  <link rel="stylesheet" href="3rdparty/OwlCarousel2-2.2.1/owl.carousel.min.css">
-  <link rel="stylesheet" href="3rdparty/OwlCarousel2-2.2.1/owl.theme.green.min.css">
-  <link rel="stylesheet" href="3rdparty/perfect-scrollbar/css/perfect-scrollbar.css">
-  <link rel="stylesheet" href="css/app.css">
-
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/css/animate.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/jquery-nice-select-1.1.0/css/nice-select.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/OwlCarousel2-2.2.1/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='3rdparty/OwlCarousel2-2.2.1/owl.theme.green.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
   <!--end stylesheets-->
 
   <!--google fonts-->
@@ -42,7 +39,7 @@
 <div>
   <div>
     <div>
-      <form action="" method="post" class="row">
+      <form action="" method="post" id="registration" class="row">
         <div class="col-lg-12">
           <div class="top-part"><strong>Register Your Team</strong></div>
           <div class="form-info">
@@ -60,8 +57,10 @@
             </div>
             <div class="form-group">
               <label for="desc">Description</label>
-              <textarea name="description" id="description" rows="4" placeholder="Max 140 characters"></textarea>
+              <textarea name="description" id="description" rows="2" placeholder="Max 140 characters"></textarea>
             </div>
+            <input type="text" id="address" style="display:none">
+            <input type="text" id="team_id" style="display:none">
             <hr>
             <button type="submit" class="btn ui-btn dark-blue">Submit</i></button>
           </div>
@@ -74,24 +73,34 @@
 </div>
 <!--end dashboard content-->
 
-<!--pre-loader-->
-<div class="preloader"><span class="beacon"></span></div>
-<!--end pre-loader-->
 
-<script src="3rdparty/js/jquery-3.2.1.min.js"></script>
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="3rdparty/js/jquery.ui.widget.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="3rdparty/js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
-<script src="3rdparty/js/jquery.fileupload.js"></script>
-<script src="3rdparty/js/popper.js"></script>
-<script src="3rdparty/js/bootstrap.js"></script>
-<script src="3rdparty/jquery-nice-select-1.1.0/js/jquery.nice-select.js"></script>
-<script src="3rdparty/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
-<script src="3rdparty/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-<script src="js/app.js"></script>
-<script src="js/fileselect.js"></script>
+<!-- <script>
+  $("button").click(function(){
+    $.post("/register",
+    {
+      title: "Donald Duck",
+      link: "Duckburg",
+      url: "afdadf",
+      description: "",
+      address: "",
+      team_id: ""
+    },
+    function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+});
+</script> -->
+
+<script src="{{ url_for('static', filename='3rdparty/js/jquery.ui.widget.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/js/jquery.iframe-transport.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/js/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/jquery-nice-select-1.1.0/js/jquery.nice-select.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/OwlCarousel2-2.2.1/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='3rdparty/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/fileselect.js') }}"></script>
 
 </body>
 </html>
