@@ -106,7 +106,7 @@
               </div>
               <div class="rating-stars">
                 <input type="text" id="{{n.team_index}}-stake-value" class="form-control" placeholder="0.0 ETH">
-                <button class="btn ui-btn dark-blue" id="{{n.team_index}}-stake" data-toggle="modal" data-target="#{{n.team_index}}-modal">Stake</button>
+                <button class="btn ui-btn dark-blue" id="{{n.team_index}}" data-toggle="modal" data-target="#{{n.team_index}}-modal" onClick"bet({{n.team_index}}, $("#{{n.team_index}}-stake-value").val())">Stake</button>
               </div>
             </div>
           </div>
@@ -124,11 +124,10 @@
               </button>
             </div>
             <div class="modal-body" id="{{n.team_index}}-modal-label">
-              Are you sure you want to stake ETH on {{n.name}}?
+              You have successfully staked ETH into {{n.name}}!
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn ui-btn dark-blue stake" id="{{n.team_index}}">Confirm</button>
+              <button type="button" class="btn ui-btn dark-blue stake" data-dismiss="modal">>Ok</button>
             </div>
           </div>
         </div>
