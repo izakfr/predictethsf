@@ -20,7 +20,10 @@ def index():
     	global_staked_ether += float(team['total_staked_ether'])
 
     for team in dict_results:
-    	team['implied_win'] = round((float(team['total_staked_ether']) / global_staked_ether) * 100, 2)
+    	if global_staked_ether == 0:
+    		team['implied_win'] = 0
+    	else:
+    		team['implied_win'] = round((float(team['total_staked_ether']) / global_staked_ether) * 100, 2)
     	team['total_staked_ether'] = round(float(team['total_staked_ether']), 3)
     	if team['picture_url'] == None:
     		team['picture_url'] = 'https://i.imgur.com/v3TqVnb.jpg'
@@ -46,6 +49,7 @@ def register():
     url = request.form['url']
     description = request.form['description']
     tx_hash = request.form['tx_hash']
+
     new_team = TeamModel(
         tx_hash,
         name=title,
