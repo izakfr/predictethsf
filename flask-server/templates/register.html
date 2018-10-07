@@ -59,8 +59,6 @@
               <label for="desc">Description</label>
               <textarea name="description" id="description" rows="2" placeholder="Max 140 characters"></textarea>
             </div>
-            <input type="text" id="address" style="display:none">
-            <input type="text" id="team_id" style="display:none">
             <hr>
             <button type="submit" class="btn ui-btn dark-blue">Submit</i></button>
           </div>
@@ -74,22 +72,18 @@
 <!--end dashboard content-->
 
 
-<!-- <script>
+<script>
   $("button").click(function(){
-    $.post("/register",
-    {
-      title: "Donald Duck",
-      link: "Duckburg",
-      url: "afdadf",
-      description: "",
-      address: "",
-      team_id: ""
-    },
+    // ETH create team function
+    form_data = $('form').serializeArray();
+    form_data.address = "";
+    form_data.team_id = "";
+    $.post("/register", form_data,
     function(data, status){
       alert("Data: " + data + "\nStatus: " + status);
     });
 });
-</script> -->
+</script>
 
 <script src="{{ url_for('static', filename='3rdparty/js/jquery.ui.widget.js') }}"></script>
 <script src="{{ url_for('static', filename='3rdparty/js/jquery.iframe-transport.js') }}"></script>
