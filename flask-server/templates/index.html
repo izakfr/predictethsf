@@ -56,6 +56,14 @@
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="connect-info">
+        <h2>Betting is now closed!</h2>
+          <br>
+          <p>Betting is now closed! Thanks for playing, it was a great hackathon :) You can check out who got paid out at on EtherScan, at this link:</p>
+          <a href="https://etherscan.io/address/0xc42E75b377e887E39A9Ab596D50edeb1F2778c81">https://etherscan.io/address/0xc42E75b377e887E39A9Ab596D50edeb1F2778c81</a>
+          <br>
+          <br>
+          <hr>
+          <br>
         <h3>Payout Structure</h3>
         <ul>
           <li><strong>20%</strong>: Top 10 winners of the hackathon will get 2% each of the total staked ETH</li>
@@ -106,8 +114,8 @@
                 <p style="font-size:.8em;font-style:italic">from <strong>{{n.total_bets_made}} stakes</strong></p>
               </div>
               <div class="rating-stars">
-                <input type="text" id="{{n.team_id}}-stake-value" class="form-control" placeholder="0.0 ETH">
-                <button class="btn ui-btn dark-blue" id="{{n.team_id}}" data-toggle="modal" data-target="#{{n.team_id}}-modal" onClick="bet({{n.team_id}}, $('#{{n.team_id}}-stake-value').val());">Stake</button>
+                <input type="text" id="{{n.team_id}}-stake-value" class="form-control" placeholder="0.0 ETH" disabled>
+                <button class="btn ui-btn dark-blue" id="{{n.team_id}}"style="text-decoration: line-through;" disabled>Stake</button>
               </div>
             </div>
           </div>
