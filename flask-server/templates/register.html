@@ -63,7 +63,7 @@
             </div>
             <hr>
             <input name="tx_hash" id="tx_hash" type="text" class="form-control" style="display:none">
-            <button type="submit" class="btn ui-btn dark-blue">Submit</i></button>
+            <input type="button" class="btn ui-btn dark-blue" value="Submit">
           </div>
         </div>
       </form>
@@ -403,12 +403,9 @@ var abi = [
       if (network == "1") { //Mainnet
         contract_address = '';
       }
-      var instance = predictethsf.at(contract_address)
-      var address = web3.eth.accounts[0];
-      debugger
-      instance.newTeam.sendTransaction(name, function(error, tx_hash){
+      var instance = predictethsf.at(contract_address);
+      instance.newTeam(name, function(error, tx_hash){
         $("#tx_hash").val(tx_hash);
-        debugger
         form_data = $('form').serializeArray();
         $.post("/register", form_data, function(data, status){
           alert("Data: " + data + "\nStatus: " + status);
@@ -416,7 +413,7 @@ var abi = [
       });
   }
 
-  $("button").click(function(){
+  $(".btn").click(function(){
     title_val = $("#title").val();
     createTeam(title_val);
 });
