@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from teams.TeamModel import TeamModel
 from utils import DEV_PROD_VALUE
-import requests
 import urllib
 
 app = Flask(__name__)
