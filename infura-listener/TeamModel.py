@@ -12,7 +12,7 @@ def DEV_PROD_VALUE(dev_value, prod_value):
 class TeamModel(Model):
 
     class Meta:
-        table_name = DEV_PROD_VALUE('dev_esf_team', 'prod_esf_team')
+        table_name = DEV_PROD_VALUE('prod_esf_team', 'prod_esf_team')
         region = 'us-west-1'
     tx_hash = UnicodeAttribute(hash_key=True)
     team_id = NumberAttribute(null=True)
