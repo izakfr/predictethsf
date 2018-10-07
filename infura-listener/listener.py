@@ -7,9 +7,9 @@ import os
 from TeamModel import TeamModel
 
 KOVAN_ENDPOINT = 'wss://kovan.infura.io/ws'
-KOVAN_ADDRESS = '0x98d86D3809Dd0588050A53cA7939D104340981c5'
+KOVAN_ADDRESS = '0xc42E75b377e887E39A9Ab596D50edeb1F2778c81'
 MAINNET_ENDPOINT = 'wss://mainnet.infura.io/ws'
-MAINNET_ADDRESS = '0x98d86D3809Dd0588050A53cA7939D104340981c5'
+MAINNET_ADDRESS = '0xc42E75b377e887E39A9Ab596D50edeb1F2778c81'
 
 CREATE_TEAM_TOPIC = '0x8c81f692c9063a2d41e52e0ea8b183d8585dac2d263243e2fa7695727b52f0f1'
 BET_TOPIC = '0xca49f418dd97ad76b84ed6fb8e915ecccb519c5379cf6a4a455c2be7618fda2f'
@@ -109,51 +109,3 @@ class InfuraClient():
         asyncio.get_event_loop().run_until_complete(self.get_event())
 
 
-        # response = requests.post(self.infura_endpoint,
-        #     json={
-        #         'jsonrpc': '2.0',
-        #         'method': 'eth_newBlockFilter',
-        #         'params': [],
-        #         'id': 1
-        #     }
-        # )
-        # print(response)
-        # while(True):
-        #     response = requests.post(self.infura_endpoint,
-        #         json={
-        #             'jsonrpc': '2.0',
-        #             'method': 'eth_getFilterChanges',
-        #             'params': [],
-        #             'id': 1
-        #         }
-        #     )
-        #     print(response)
-        #     time.sleep(5)
-
-# async def get_eth_blockNumber(uri):
-#     async with websockets.connect(uri) as websocket:
-#         request_data = {'jsonrpc': '2.0', 'method': 'eth_blockNumber', 'params': [], 'id': 1}
-#         await websocket.send(json.dumps(request_data))
-
-#         result = await websocket.recv()
-#         print(result)
-
-
-# var Web3 = require('web3')
-# var request = require('request');
-# var contract = require('truffle-contract')
-# var zastrin_pay_artifacts = require('./build/contracts/ZastrinPay.json')
-# var ws_provider = 'wss://mainnet.infura.io/ws'
-# var web3 = new Web3(new Web3.providers.WebsocketProvider(ws_provider))
-# var ZastrinPay = contract(zastrin_pay_artifacts);
-# var econtract = new web3.eth.Contract(ZastrinPay.abi, '<address>');
-
-# console.log('Starting listner ....');
-
-# newPaymentEvent = econtract.events.NewPayment({fromBlock: 5424000, address: '<address>', toBlock: 'latest'}, function(error, result){
-#   if (result !== undefined) {
-#     var args = result.returnValues;
-#     args['_txn'] = result.transactionHash;
-#     console.log(args);
-#   }
-# });
