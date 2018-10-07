@@ -41,30 +41,27 @@ def register_page():
 
 @app.route('/register', methods=['POST'])
 def register():
+    title = request.form['title']
+    link = request.form['link']
+    url = request.form['url']
+    description = request.form['description']
+    address = request.form['address']
+    team_id = request.form['team_id']
     try:
-        title = request.form['title']
-        link = request.form['link']
-        url = request.form['url']
-        description = request.form['description']
-        address = request.form['address']
-        team_id = request.form['team_id']
-        try:
-            existing_team = TeamModel.get(team_id)
-            # Team already exists, do not overwrite, just do nothing instead
-            return 'Team already exists!'
-        except:
-            new_team = TeamModel(
-                team_id,
-                address=address,
-                name=title,
-                description=description,
-                picture_url=url,
-                project_link=link,
-            )
-            new_team.save()
-            return redirect('/')
+        existing_team = TeamModel.get(team_id)
+        # Team already exists, do not overwrite, just do nothing instead
+        return 'Team already exists!'
     except:
-        return 'Uh oh, something went wrong!'
+        new_team = TeamModel(
+            team_id,
+            address=address,
+            name=title,
+            description=description,
+            picture_url=url,
+            project_link=link,
+        )
+        new_team.save()
+        return redirect('/')
 
 @app.route('/stage')
 def stage():

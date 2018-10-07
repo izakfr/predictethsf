@@ -105,15 +105,35 @@
                 <p style="font-size:.8em;font-style:italic">from <strong>{{n.total_bets_made}} stakes</strong></p>
               </div>
               <div class="rating-stars">
-                <form action="" method="post">
-                  <input type="text" id="tags" class="form-control" placeholder="0.0 ETH">
-                  <button id="{{n.team_index}}" class="btn ui-btn dark-blue">Stake</button>
-                </form>
+                <input type="text" id="{{n.team_index}}-stake-value" class="form-control" placeholder="0.0 ETH">
+                <button class="btn ui-btn dark-blue" id="{{n.team_index}}-stake" data-toggle="modal" data-target="#{{n.team_index}}-modal">Stake</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="{{n.team_index}}-modal" tabindex="-1" role="dialog" aria-labelledby="{{n.team_index}}-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="{{n.team_index}}-modal-label">Stake Confirmation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="{{n.team_index}}-modal-label">
+              Are you sure you want to stake ETH on {{n.name}}?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn ui-btn dark-blue stake" id="{{n.team_index}}">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {% endfor %}
     </div>
   </div>
@@ -123,8 +143,7 @@
 
 
 <!--footer section-->
-<div class="footer">
-  <div class="footer-strip">
+<div class="footer" style="padding-top:1.8em">
     <div class="row">
       <div class="col-lg-3 col-md-3">
         <p>ETH San Francisco Hackathon</p>
@@ -135,10 +154,8 @@
         <p class="copyright"><i  class="fa fa-copyright"></i>2018 Stably Blockchain Labs, Inc.</p>
       </div>
     </div>
-  </div>
 </div>
 <!--end footer section-->
-
 
 <script src="{{ url_for('static', filename='3rdparty/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='3rdparty/js/popper.js') }}"></script>
