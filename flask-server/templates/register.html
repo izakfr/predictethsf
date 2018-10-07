@@ -418,7 +418,7 @@ var abi = [
         $("#tx_hash").val(tx_hash);
         form_data = $('form').serializeArray();
         $.post("/register", form_data, function(data, status){
-
+          window.location.href = "/"
         });
       });
   }
