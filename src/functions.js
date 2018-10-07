@@ -278,7 +278,7 @@ function bet(teamIndex, amountBetting) {
 
     // Load contract and address
     var predictethsf = web3.eth.contract(abi);
-    var instance = predictethsf.at('0xf4b36e5da66917a319243d4f09bfa946588e5dfa')
+    var instance = predictethsf.at('0x3F2D75C704b9A41B0cAE0759D22c93c9FF6F01D8')
     var address = web3.eth.accounts[0];
     var val = window.web3.toWei(amountBetting, 'ether');
     instance.bet(teamIndex, {from: address, value: val}, function(error, result){
@@ -294,7 +294,7 @@ function bet(teamIndex, amountBetting) {
 
     // Load contract and address
     var predictethsf = web3.eth.contract(abi);
-    var instance = predictethsf.at('0xf4b36e5da66917a319243d4f09bfa946588e5dfa');
+    var instance = predictethsf.at('0x3F2D75C704b9A41B0cAE0759D22c93c9FF6F01D8');
     var address = web3.eth.accounts[0];
     var val = window.web3.toWei(amountBetting, 'ether');
     instance.bet(teamIndex, {from: address, value: val}, function(error, result){

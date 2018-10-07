@@ -7,7 +7,7 @@ stage = os.environ.get('stage')
 assert(stage != 'prod')
 
 with TeamModel.batch_write() as batch:
-    for i in range(50):
+    for i in range(10):
         new_team = TeamModel(
             i,
             address=f'0x{i}',
@@ -16,6 +16,6 @@ with TeamModel.batch_write() as batch:
             description=f'Putting the number {i} on the blockchain',
             picture_url='https://i.imgur.com/ksZnH0k.jpg',
             project_link='https://stably.io',
-            total_accounts_staked=random.randint(0, 100),
+            total_bets_made=random.randint(0, 100),
         )
         batch.save(new_team)
