@@ -381,9 +381,10 @@ var abi = [
   }
 
   $("button").click(function(){
-    // createTeam(form_data.title);
-    $("#address").val("address");
-    $("#team_id").val("9");
+    title_val = $("#title").val();
+    address_val, team_id_val = createTeam(title_val);
+    $("#address").val(address_val);
+    $("#team_id").val(team_id_val);
     form_data = $('form').serializeArray();
     $.post("/register", form_data, function(data, status){
       alert("Data: " + data + "\nStatus: " + status);
