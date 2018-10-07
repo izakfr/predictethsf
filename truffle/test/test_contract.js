@@ -61,8 +61,7 @@ contract('predictethsf javascript tests', function (accounts) {
     await instance.newTeam("one", {from: accountFour});
     await instance.bet(0, {from: accountZero, value: 1000000000000000000})
     await instance.bet(1, {from: accountOne, value: 5000000000000000000})
-    let winner = await instance.TeamCreator(0);
-    await instance.distributePrizes([winner], {from: accountFour});
+    await instance.distributePrizes([0], {from: accountFour});
     let finalForZero = await web3.eth.getBalance(accountZero);
     let finalForOne = await web3.eth.getBalance(accountOne);
     assert(Number(initalForZero) < Number(finalForZero), "zero did not receive its winnings");
@@ -82,9 +81,7 @@ contract('predictethsf javascript tests', function (accounts) {
     await instance.bet(1, {from: accountTwo, value: 1000000000000000000})
     await instance.bet(2, {from: accountThree, value: 1000000000000000000})
     await instance.bet(2, {from: accountFour, value: 1000000000000000000})
-    let winner1 = await instance.TeamCreator(0);
-    let winner2 = await instance.TeamCreator(1);
-    await instance.distributePrizes([winner1, winner2], {from: accountZero});
+    await instance.distributePrizes([0, 1], {from: accountZero});
     let finalForOne = await web3.eth.getBalance(accountOne);
     let finalForTwo = await web3.eth.getBalance(accountTwo);
     let finalForThree = await web3.eth.getBalance(accountThree);

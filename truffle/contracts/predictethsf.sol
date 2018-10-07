@@ -28,7 +28,7 @@ contract predictethsf {
     address creator;
     string teamName;
     uint256 totalBet;
-    uint256[] bettors;
+    uint256 numBettors;
     mapping(uint256 => Bettor) bettorInfo;
   }
 
@@ -37,7 +37,6 @@ contract predictethsf {
   uint256 public minimumBet;
   mapping(uint256 => Team) public teamInfo;
   uint256 public numTeams = 0;
-  uint256[] public teamList;
 
   // Deploy the contract
   function() public payable {}
@@ -46,12 +45,15 @@ contract predictethsf {
     minimumBet = 100000000000000;
   }
 
+  function kill() public {
+    if(msg.sender == owner) selfdestruct(owner);
+  }
+
   // Create a new team
   function newTeam(string _newTeamName) public {
     teamInfo[numTeams].teamName = _newTeamName;
     teamInfo[numTeams].totalBet = 0;
     teamInfo[numTeams].creator = msg.sender;
-    teamList.push(numTeams);
     emit NewTeam(numTeams, msg.sender, _newTeamName);
     numTeams += 1;
   }
@@ -66,17 +68,17 @@ contract predictethsf {
     teamInfo[_teamSelected].totalBet += msg.value;
 
     // Set the bettor information
-    uint256 numBettors = teamInfo[_teamSelected].bettors.length;
+    uint256 numBettors = teamInfo[_teamSelected].numBettors;
     teamInfo[_teamSelected].bettorInfo[numBettors].amountBet = msg.value;
     teamInfo[_teamSelected].bettorInfo[numBettors].bettorAddress = msg.sender;
 
     // Add the bettor to the teams' bettor list
-    teamInfo[_teamSelected].bettors.push(numBettors);
+    teamInfo[_teamSelected].numBettors += 1;
     emit Bet(_teamSelected, msg.sender, msg.value);
   }
 
   // Distribute prizes amongst the winners
-  function distributePrizes(address[] winningTeams) public {
+  function distributePrizes(uint256[] winningTeams) public {
     require(owner == msg.sender);
     // This is a list of winners and a list of the amounts they bet
     uint256 count = 0;
@@ -90,15 +92,15 @@ contract predictethsf {
     uint256 winnerBet = 0;
 
     // Loop through the teams who didn't win to find the total losing bet
-    for (uint256 i = 0; i < teamList.length; i++) {
+    for (uint256 i = 0; i < numTeams; i++) {
       bool winner = false;
       for (uint256 j = 0; j < winningTeams.length; j++) {
-        if (teamInfo[i].creator == winningTeams[j]) {
+        if (i == winningTeams[j]) {
           winner = true;
         }
       }
       if (winner) {
-        for (uint256 k = 0; k < teamInfo[i].bettors.length; k++) {
+        for (uint256 k = 0; k < teamInfo[i].numBettors; k++) {
           winningBettors[count] = teamInfo[i].bettorInfo[k].bettorAddress;
           amountsBet[count] = teamInfo[i].bettorInfo[k].amountBet;
           count += 1;
@@ -136,6 +138,6 @@ contract predictethsf {
   }
 
   function TeamNumBettors(uint256 _team) public view returns(uint256){
-    return teamInfo[_team].bettors.length;
+    return teamInfo[_team].numBettors;
   }
 }
