@@ -92,4 +92,12 @@ contract('predictethsf javascript tests', function (accounts) {
     assert(Number(initalForThree) > Number(finalForThree), "three did not lose its money");
     assert(Number(initalForFour) > Number(finalForFour), "four did not lose its money");
   })
+
+  it("create a team and change its address", async () => {
+    let instance = await PredictEthSF.new({from: accountZero});
+    await instance.newTeam("one", {from: accountOne});
+    await instance.changeTeamAddress(0, accountTwo, {from: accountOne});
+    let teamCreatorAfter = await instance.TeamCreator(0);
+    assert(teamCreatorAfter == accountTwo);
+  })
 })
