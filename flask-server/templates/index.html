@@ -37,13 +37,13 @@
     <div class="banner-logo" style="color: white;font-size: 1.3em;">Predict ETHSF</a></div>
     <div class="start-here">
       <a href="https://www.stably.io" class="btn ui-btn banner-logo" target="_blank"style="padding:0.6em">Learn About Stably</a>
-      <a href="register.html" class="btn ui-btn banner-logo"  target="_blank" style="padding:0.6em">Register a Project</a>
+      <a href="register.html" class="btn ui-btn banner-logo" target="_blank" style="padding:0.6em">Register a Project</a>
     </div>
   </nav>
 
   <div class="banner-content">
     <h1 class="banner-title">Put your ETH where your mouth is</h1>
-    <em style="color:white">Welcome to Predict ETHSF, built by Stably.</em>
+    <em style="color:white">Welcome to Predict ETHSF, built by <a href="https://www.stably.io" target="_blank">Stably</a></em>
     <p>The premise is simple - find a team, put an ETH stake behind them, and reap the rewards if they win the hackathon. And if your team wins, you'll get a portion of the total staked ETH!</p>
   </div>
 
@@ -55,22 +55,19 @@
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="connect-info">
-        <h3>How It Works</h3>
-        <p>
-          Bacon ipsum dolor amet cow salami pork pastrami.
-          Pork loin beef ribs drumstick t-bone kielbasa chuck.
-          Bresaola meatball ribeye pig doner boudin. Meatloaf rump spare ribs,
-          salami drumstick corned beef ball tip jerky frankfurter.
-          Short ribs cow pork chop pancetta sausage jerky bresaola
-          frankfurter swine ribeye pork loin. Leberkas ham shankle chicken.
-          <br>
-          <br>
-          <strong>Payout Structure</strong>:
-        </p>
+        <h3>Payout Structure</h3>
         <ul>
           <li><strong>20%</strong>: Top 10 winners of the hackathon will get 2% each of the total staked ETH</li>
           <li><strong>80%</strong>: All accounts that put a stake in the winning teams will proprotionately split the remaining ETH</li>
         </ul>
+        <br>
+        <h3>How It Works</h3>
+        <p>
+          <strong>If you are a hackathon team:</strong> Click register on the top right of the site, and enter your project information. Make sure you have MetaMask or a similar client installed on your browser - once you hit submit, provide the Ethereum wallet address that you would like to be paid out to. If your team is announced as a winner, you will be paid out 2% of the total staked ETH!
+          <br>
+          <br>
+          <strong>If you want to place a stake:</strong> Find a team below that you think will be among the 10 winners for the hackathon and then choose an amount of ETH you want to stake behind the project. Make sure you have MetaMask or a similar client installed on your browser, and link the Ethereum wallet address you want to use. If you chose a winning team, you will be paid out proportionately to the rest of the winners, based on the size of your stake.
+        </p>
       </div>
     </div>
   </div>
@@ -98,19 +95,19 @@
               <p>
                 {{n.description}} 
               </p>
-                <i class="fa fa-link"></i> <em><a href="{{n.project_link}}">{{n.project_link}}</a></em>
+                <i class="fa fa-link"></i> <em><a href="{{n.project_link}}" target="_blank">{{n.project_link}}</a></em>
             </div>
             <div class="bottom-details">
               <div class="rating-stars">
-                <h1 style="margin-bottom:0">12%</h1>
-                <p style="margin-bottom:0.5em;">implied win</p>
+                <h1 style="margin-bottom:0">{{n.implied_win}}%</h1>
+                <p style="margin-bottom:0.5em;">implied odds</p>
                 <p style="margin-bottom:0;margin-top:0em;font-size:.8em;font-style:italic"><strong>{{n.total_staked_ether}} ETH</strong> staked</p>
-                <p style="font-size:.8em;font-style:italic">from <strong>{{n.total_accounts_staked}} accounts</strong></p>
+                <p style="font-size:.8em;font-style:italic">from <strong>{{n.total_bets_made}} stakes</strong></p>
               </div>
               <div class="rating-stars">
                 <form action="" method="post">
                   <input type="text" id="tags" class="form-control" placeholder="0.0 ETH">
-                  <button class="btn ui-btn dark-blue">Stake</button>
+                  <button id="{{n.team_index}}" class="btn ui-btn dark-blue">Stake</button>
                 </form>
               </div>
             </div>
@@ -130,12 +127,12 @@
   <div class="footer-strip">
     <div class="row">
       <div class="col-lg-3 col-md-3">
-        <h3 class="footer-logo">Serv</h3>
+        <p>ETH San Francisco Hackathon</p>
       </div>
       <div class="col-lg-6 col-md-6">
       </div>
       <div class="col-lg-3 col-md-3">
-        <p class="copyright"><i  class="fa fa-copyright"></i> 2017 - todate Ui-DesignLab</p>
+        <p class="copyright"><i  class="fa fa-copyright"></i>2018 Stably Blockchain Labs, Inc.</p>
       </div>
     </div>
   </div>
