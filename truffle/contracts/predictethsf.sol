@@ -102,6 +102,7 @@ contract predictethsf {
   uint256 public minimumBet;
   mapping(uint256 => Team) public teamInfo;
   uint256 public numTeams = 0;
+  bool done = false;
 
   // Deploy the contract
   function() public payable {}
@@ -114,8 +115,14 @@ contract predictethsf {
     if(msg.sender == owner) selfdestruct(owner);
   }
 
+  function endBetting() public {
+    require(owner == msg.sender);
+    done = true;
+  }
+
   // Create a new team
   function newTeam(string _newTeamName) public {
+    require(done == false);
     teamInfo[numTeams].teamName = _newTeamName;
     teamInfo[numTeams].totalBet = 0;
     teamInfo[numTeams].creator = msg.sender;
@@ -133,6 +140,7 @@ contract predictethsf {
     // Check that the bet is above the minimum
     require(msg.value >= minimumBet);
     require(_teamSelected < numTeams);
+    require(done == false);
 
     // Add to the total of the team the amount bet
     teamInfo[_teamSelected].totalBet += msg.value;
