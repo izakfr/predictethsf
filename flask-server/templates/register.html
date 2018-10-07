@@ -404,11 +404,12 @@ var abi = [
         contract_address = '';
       }
       var instance = predictethsf.at(contract_address);
+      alert('Sign on your metamask.');
       instance.newTeam(name, function(error, tx_hash){
         $("#tx_hash").val(tx_hash);
         form_data = $('form').serializeArray();
         $.post("/register", form_data, function(data, status){
-          alert("Data: " + data + "\nStatus: " + status);
+          
         });
       });
   }

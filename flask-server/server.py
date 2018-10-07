@@ -50,11 +50,6 @@ def register():
     description = request.form['description']
     tx_hash = request.form['tx_hash']
 
-    # title = 'a'
-    # link = 'a'
-    # url = 'a'
-    # description = 'a'
-    # tx_hash = 'a'
     new_team = TeamModel(
         tx_hash,
         name=title,
