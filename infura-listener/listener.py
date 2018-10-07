@@ -6,11 +6,10 @@ import asyncio
 import os
 from TeamModel import TeamModel
 
-# KOVAN_ENDPOINT = 'https://kovan.infura.io/v3/b26481279d3a46afab21c568f94ce9d1'
 KOVAN_ENDPOINT = 'wss://kovan.infura.io/ws'
-KOVAN_ADDRESS = '0xFFe506aB67a5D7e96e8C4a25F6BE93F89020cc88'
-MAINNET_ENDPOINT = ''
-MAINNET_ADDRESS = ''
+KOVAN_ADDRESS = '0x98d86D3809Dd0588050A53cA7939D104340981c5'
+MAINNET_ENDPOINT = 'wss://mainnet.infura.io/ws'
+MAINNET_ADDRESS = '0x98d86D3809Dd0588050A53cA7939D104340981c5'
 
 CREATE_TEAM_TOPIC = '0x8c81f692c9063a2d41e52e0ea8b183d8585dac2d263243e2fa7695727b52f0f1'
 BET_TOPIC = '0xca49f418dd97ad76b84ed6fb8e915ecccb519c5379cf6a4a455c2be7618fda2f'
@@ -87,6 +86,7 @@ class InfuraClient():
                                 address=submitter_address,
                                 name=team_name,
                                 team_id=team_id,
+                                mined=True,
                             )
                             new_team.save()
                     if BET_TOPIC in topics:
