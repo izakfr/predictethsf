@@ -8,7 +8,7 @@ from TeamModel import TeamModel
 
 # KOVAN_ENDPOINT = 'https://kovan.infura.io/v3/b26481279d3a46afab21c568f94ce9d1'
 KOVAN_ENDPOINT = 'wss://kovan.infura.io/ws'
-KOVAN_ADDRESS = '0x3F2D75C704b9A41B0cAE0759D22c93c9FF6F01D8'
+KOVAN_ADDRESS = '0xFFe506aB67a5D7e96e8C4a25F6BE93F89020cc88'
 MAINNET_ENDPOINT = ''
 MAINNET_ADDRESS = ''
 
@@ -37,8 +37,8 @@ class InfuraClient():
     async def get_event(self):
         async with websockets.connect(self.infura_endpoint) as websocket:
             request_data = {
-                'jsonrpc': '2.0', 
-                'method': 'eth_newFilter', 
+                'jsonrpc': '2.0',
+                'method': 'eth_newFilter',
                 'params':[
                     {
                         'topics': [[CREATE_TEAM_TOPIC, BET_TOPIC]]
@@ -50,9 +50,9 @@ class InfuraClient():
             response = await websocket.recv()
             filter_id = json.loads(response)['result']
             print(filter_id)
-            
+
             request_data = {'jsonrpc': '2.0', 'method': 'eth_getFilterChanges', 'params': [filter_id], 'id': 1}
-            
+
             while(True):
                 await websocket.send(json.dumps(request_data))
                 response = await websocket.recv()
