@@ -424,14 +424,14 @@
       var network = web3.version.network;
       var contract_address;
       if (network == "42") { // Kovan
-        contract_address = 0xFFe506aB67a5D7e96e8C4a25F6BE93F89020cc88;
+        contract_address = '0xFFe506aB67a5D7e96e8C4a25F6BE93F89020cc88';
       }
       if (network == "1") { //Mainnet
         contract_address = '';
       }
       var instance = predictethsf.at(contract_address);
       // alert('Sign on your metamask.');
-      $('#confirm-modal').modal('show'); 
+      $('#confirm-modal').modal('show');
       instance.newTeam(name, function(error, tx_hash){
         $("#tx_hash").val(tx_hash);
         form_data = $('form').serializeArray();
