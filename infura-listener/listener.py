@@ -94,6 +94,7 @@ class InfuraClient():
                         team = TeamModel.get(team_id)
                         team.submitter_address = team_on_chain[0]
                         team.total_staked_ether = float(self.web3.fromWei(team_on_chain[2], 'ether'))
+                        team.total_bets_made = team_on_chain[3]
                         team.save()
 
                 time.sleep(15)

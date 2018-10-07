@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from teams.TeamModel import TeamModel
 from utils import DEV_PROD_VALUE
 
@@ -35,6 +35,33 @@ def index():
     context['teams_list'] = dict_results
     return render_template('index.html', **context)
 
+@app.route('/register', methods=['GET'])
+def register_page():
+    return render_template('register.html')
+
+@app.route('/register', methods=['POST'])
+def register():
+    title = request.form['title']
+    link = request.form['link']
+    url = request.form['url']
+    description = request.form['description']
+    address = request.form['address']
+    team_id = request.form['team_id']
+    try:
+        existing_team = TeamModel.get(team_id)
+        # Team already exists, do not overwrite, just do nothing instead
+        return 'Team already exists!'
+    except:
+        new_team = TeamModel(
+            team_id,
+            address=address,
+            name=title,
+            description=description,
+            picture_url=url,
+            project_link=link,
+        )
+        new_team.save()
+        return 'Success'
 
 @app.route('/stage')
 def stage():

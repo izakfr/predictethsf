@@ -20,7 +20,7 @@ class TeamModel(Model):
     description = UnicodeAttribute(null=True)
     picture_url = UnicodeAttribute(null=True)
     project_link = UnicodeAttribute(null=True)
-    total_accounts_staked = NumberAttribute(default=0)
+    total_bets_made = NumberAttribute(default=0)
     mined = BooleanAttribute(default=False)
 
     def __iter__(self):
