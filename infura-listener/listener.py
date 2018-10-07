@@ -57,7 +57,7 @@ class InfuraClient():
                 await websocket.send(json.dumps(request_data))
                 response = await websocket.recv()
                 # response = '{"jsonrpc":"2.0","id":1,"result":[{"address":"0xb4b0cbfdcafb60755a143d21851d7aed3a6feffe","blockHash":"0x88e7acec025d8da20311f043fdc8cd67c86110bf693688724610bc7baa71b29a","blockNumber":"0x891d59","data":"0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000002cb708306c2d60e42af951a155be0cabd5b16676000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000057465616d31000000000000000000000000000000000000000000000000000000","logIndex":"0x0","removed":false,"topics":["0x8c81f692c9063a2d41e52e0ea8b183d8585dac2d263243e2fa7695727b52f0f1"],"transactionHash":"0x85a947f941a0acc9eef87429465b243dae8b40eb77416f8dc89384fb7bba21ce","transactionIndex":"0x0","transactionLogIndex":"0x0","type":"mined"}]}'
-                # response = '{"jsonrpc":"2.0","id":1,"result":[{"address":"0xb4b0cbfdcafb60755a143d21851d7aed3a6feffe","blockHash":"0xa8d8d7e25fccbd5e80282f2cbdcd1dedae15c3a0e3d7b4ab89f06bc0c0631aa2","blockNumber":"0x892183","data":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000002cb708306c2d60e42af951a155be0cabd5b1667600000000000000000000000000000000000000000000000000038d7ea4c68000","logIndex":"0x0","removed":false,"topics":["0xca49f418dd97ad76b84ed6fb8e915ecccb519c5379cf6a4a455c2be7618fda2f"],"transactionHash":"0xd831e2be1f048c83f4b8b59ec81b0a06e47234ee7ba0bf58b93288f79c5d8a95","transactionIndex":"0x1","transactionLogIndex":"0x0","type":"mined"}]}'
+                response = '{"jsonrpc":"2.0","id":1,"result":[{"address":"0xb4b0cbfdcafb60755a143d21851d7aed3a6feffe","blockHash":"0xa8d8d7e25fccbd5e80282f2cbdcd1dedae15c3a0e3d7b4ab89f06bc0c0631aa2","blockNumber":"0x892183","data":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000002cb708306c2d60e42af951a155be0cabd5b1667600000000000000000000000000000000000000000000000000038d7ea4c68000","logIndex":"0x0","removed":false,"topics":["0xca49f418dd97ad76b84ed6fb8e915ecccb519c5379cf6a4a455c2be7618fda2f"],"transactionHash":"0xd831e2be1f048c83f4b8b59ec81b0a06e47234ee7ba0bf58b93288f79c5d8a95","transactionIndex":"0x1","transactionLogIndex":"0x0","type":"mined"}]}'
                 data_json = json.loads(response)
                 new_events = data_json['result']
                 print(response)
@@ -91,6 +91,7 @@ class InfuraClient():
                         wei_amount = self.web3.fromWei(int(raw_hex[64*2:64*3], 16), 'ether')
                         team_on_chain = self.contract.functions.teamInfo(team_id).call()
                         print(team_id, submitter_address, wei_amount)
+                        print(team_on_chain)
                         team = TeamModel.get(team_id)
                         team.submitter_address = team_on_chain[0]
                         team.total_staked_ether = float(self.web3.fromWei(team_on_chain[2], 'ether'))

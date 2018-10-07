@@ -86,25 +86,6 @@ var abi = [
           "type": "uint256"
         }
       ],
-      "name": "teamList",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
       "name": "teamInfo",
       "outputs": [
         {
@@ -117,6 +98,10 @@ var abi = [
         },
         {
           "name": "totalBet",
+          "type": "uint256"
+        },
+        {
+          "name": "numBettors",
           "type": "uint256"
         }
       ],
@@ -240,6 +225,15 @@ var abi = [
     },
     {
       "constant": false,
+      "inputs": [],
+      "name": "kill",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
       "inputs": [
         {
           "name": "_newTeamName",
@@ -247,6 +241,24 @@ var abi = [
         }
       ],
       "name": "newTeam",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "teamNumber",
+          "type": "uint256"
+        },
+        {
+          "name": "_newTeamAddress",
+          "type": "address"
+        }
+      ],
+      "name": "changeTeamAddress",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -271,7 +283,25 @@ var abi = [
       "inputs": [
         {
           "name": "winningTeams",
-          "type": "address[]"
+          "type": "uint256[]"
+        },
+        {
+          "name": "amountToWinningTeams",
+          "type": "uint256"
+        }
+      ],
+      "name": "payoutWinners",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "winningTeams",
+          "type": "uint256[]"
         }
       ],
       "name": "distributePrizes",
